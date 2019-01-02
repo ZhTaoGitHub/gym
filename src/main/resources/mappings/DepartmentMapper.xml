@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bj.group6.model.mappers.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.bj.group6.model.entity.Department" >
+    <id column="dep_id" property="depId" jdbcType="INTEGER" />
+    <result column="dep_name" property="depName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dep_id, dep_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from departments
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </select>
+  <select id="listDepartments" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from departments
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from departments
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bj.group6.model.entity.Department" >
+    insert into departments (dep_id, dep_name)
+    values (#{depId,jdbcType=INTEGER}, #{depName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj.group6.model.entity.Department" >
+    insert into departments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="depId != null" >
+        dep_id,
+      </if>
+      <if test="depName != null" >
+        dep_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="depId != null" >
+        #{depId,jdbcType=INTEGER},
+      </if>
+      <if test="depName != null" >
+        #{depName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj.group6.model.entity.Department" >
+    update departments
+    <set >
+      <if test="depName != null" >
+        dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj.group6.model.entity.Department" >
+    update departments
+    set dep_name = #{depName,jdbcType=VARCHAR}
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </update>
+</mapper>

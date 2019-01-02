@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/tx
+	   http://www.springframework.org/schema/tx/spring-tx.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 内容扫描 -->
+    <context:component-scan base-package="com.bj.group6.*"/>
+    <!--配置文件占位符 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:db/db.properties"/>
+    </bean>
+
+    <!--配置数据源 -->
+    <bean id="dataSource"
+          class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${druid.driverClassName}"/>
+        <property name="url" value="${druid.url}"/>
+        <property name="username" value="${druid.username}"/>
+        <property name="password" value="${druid.password}"/>
+    </bean>
+
+    <!-- sqlSessionTemplate,直接构建mybatis的sqlSession -->
+    <!--<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>-->
+
+    <!-- 配置mybatis的sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- mapping.xml配置文件所在的位置 -->
+        <property name="mapperLocations" value="classpath:mappings/*.xml"/>
+        <property name="configuration">
+
+            <bean class="org.apache.ibatis.session.Configuration">
+                <!--mybatis用来控制台显示sql语句-->
+                <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>
+                <property name="mapUnderscoreToCamelCase" value="true"/>
+
+            </bean>
+
+        </property>
+    </bean>
+
+    <!-- 事务管理器,使用spring的DataSourceTransactionManger -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--注解式事务方式 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--以下是AOP的事务方式配置-->
+    <!--<tx:advice id="txadvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="del*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="edit*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="list*" propagation="REQUIRED" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="serviceMethod" expression="execution(* com.bj.group6.service.*.*(..))"/>
+        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txadvice"/>
+    </aop:config>-->
+
+    <!-- mybatis的 Mapper接口类的包 -->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.bj.group6.model.mappers"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+</beans>
