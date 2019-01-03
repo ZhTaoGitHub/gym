@@ -14,11 +14,13 @@
     from departments
     where dep_id = #{depId,jdbcType=INTEGER}
   </select>
+
   <select id="listDepartments" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from departments
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from departments
     where dep_id = #{depId,jdbcType=INTEGER}

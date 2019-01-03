@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()
+    +path+"/";
+%>
 <head>
+    <base href="<%=basePath%>"/>
     <meta charset="UTF-8">
     <title>后台登录-X-admin2.0</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -8,7 +14,8 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="bookmark" href="/favicon.ico" type="image/x-icon"　/>
     <link rel="stylesheet" href="/XAdmin/css/font.css">
     <link rel="stylesheet" href="/XAdmin/css/xadmin.css">
     <script type="text/javascript" src="/XAdmin/js/jquery.min.3.2.1.js"></script>
@@ -65,13 +72,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="<%=request.getContextPath()%>/jsp/number_list.jsp">
+                        <a _href="/jsp/number_list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="<%=request.getContextPath()%>/jsp/number_del.jsp">
+                        <a _href="/jsp/number_del.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员删除</cite>
 
@@ -276,7 +283,7 @@
                 <%--这里是主页选项卡内容--%>
             </div>
             <script>
-                $("#frame_content").load("<%=request.getContextPath()%>/welcome.jsp",function(responseTxt,statusTxt,xhr){} );
+                $("#frame_content").load("/jsp/welcome.jsp",function(responseTxt,statusTxt,xhr){} );
             </script>
         </div>
     </div>

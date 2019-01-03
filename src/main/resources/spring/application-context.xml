@@ -16,6 +16,7 @@
         <property name="location" value="classpath:db/db.properties"/>
     </bean>
 
+    <!--<context:property-placeholder location="classpath:db/db.properties" />-->
     <!--配置数据源 -->
     <bean id="dataSource"
           class="com.alibaba.druid.pool.DruidDataSource">
@@ -35,6 +36,7 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- mapping.xml配置文件所在的位置 -->
         <property name="mapperLocations" value="classpath:mappings/*.xml"/>
+
         <property name="configuration">
 
             <bean class="org.apache.ibatis.session.Configuration">

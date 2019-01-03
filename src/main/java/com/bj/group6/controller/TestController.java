@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class TestController {
-
     @Autowired
     private DepartmentService departmentService;
 
