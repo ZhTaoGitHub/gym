@@ -18,6 +18,7 @@
     <link rel="bookmark" href="/favicon.ico" type="image/x-icon"　/>
     <link rel="stylesheet" href="/XAdmin/css/font.css">
     <link rel="stylesheet" href="/XAdmin/css/xadmin.css">
+    <link rel="stylesheet" href="/XAdmin/lib/layui/css/layui.css"/>
     <script type="text/javascript" src="/XAdmin/js/jquery.min.3.2.1.js"></script>
     <script src="/XAdmin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/XAdmin/js/xadmin.js"></script>

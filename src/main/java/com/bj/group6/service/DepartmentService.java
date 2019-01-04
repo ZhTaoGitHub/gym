@@ -13,4 +13,6 @@ public interface DepartmentService {
     void removeDepartmentById(Integer id);
 
     List<Department> listDepartment();
+
+    int delDepartment(Integer depId);
 }

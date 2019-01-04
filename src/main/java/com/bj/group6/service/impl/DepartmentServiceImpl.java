@@ -38,4 +38,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> listDepartment(){
         return departmentMapper.listDepartments();
     }
+
+    @Override
+    @Transactional(propagation=Propagation.REQUIRED,rollbackForClassName="Exception")
+    public int delDepartment(Integer depId) {
+        return departmentMapper.deleteByPrimaryKey(depId);
+    }
 }

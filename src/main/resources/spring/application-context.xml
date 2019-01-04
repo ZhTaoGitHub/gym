@@ -11,12 +11,13 @@
 	   http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 内容扫描 -->
     <context:component-scan base-package="com.bj.group6.*"/>
-    <!--配置文件占位符 -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:db/db.properties"/>
-    </bean>
 
-    <!--<context:property-placeholder location="classpath:db/db.properties" />-->
+    <!--配置文件占位符 -->
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:db/db.properties"/>
+    </bean>-->
+    <context:property-placeholder location="classpath:db/db.properties" />
+
     <!--配置数据源 -->
     <bean id="dataSource"
           class="com.alibaba.druid.pool.DruidDataSource">
@@ -36,17 +37,18 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- mapping.xml配置文件所在的位置 -->
         <property name="mapperLocations" value="classpath:mappings/*.xml"/>
-
+        <!--别名扫描-->
+        <property name="typeAliasesPackage" value="com.bj.group6.model.entity"/>
         <property name="configuration">
-
             <bean class="org.apache.ibatis.session.Configuration">
                 <!--mybatis用来控制台显示sql语句-->
                 <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>
                 <property name="mapUnderscoreToCamelCase" value="true"/>
 
             </bean>
-
         </property>
+
+
     </bean>
 
     <!-- 事务管理器,使用spring的DataSourceTransactionManger -->
@@ -78,5 +80,7 @@
         <property name="basePackage" value="com.bj.group6.model.mappers"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+
+    <bean class="com.bj.group6.exception.GlobalExceptionHandler"/>
 
 </beans>
