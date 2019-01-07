@@ -44,7 +44,6 @@
             </dl>
         </li>
     </ul>
-    <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
             <a href="javascript:;">admin</a>
