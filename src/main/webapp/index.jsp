@@ -1,12 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()
-    +path+"/";
-%>
+
 <head>
-    <base href="<%=basePath%>"/>
+
     <meta charset="UTF-8">
     <title>后台登录-X-admin2.0</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -16,12 +12,13 @@
 
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="bookmark" href="/favicon.ico" type="image/x-icon"　/>
-    <link rel="stylesheet" href="/XAdmin/css/font.css">
-    <link rel="stylesheet" href="/XAdmin/css/xadmin.css">
-    <link rel="stylesheet" href="/XAdmin/lib/layui/css/layui.css"/>
-    <script type="text/javascript" src="/XAdmin/js/jquery.min.3.2.1.js"></script>
-    <script src="/XAdmin/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/XAdmin/js/xadmin.js"></script>
+    <link rel="stylesheet" href="/X-admin-2.3/css/font.css">
+    <link rel="stylesheet" href="/X-admin-2.3/css/xadmin.css">
+    <link rel="stylesheet" href="/X-admin-2.3/lib/layui/css/layui.css"/>
+    <script type="text/javascript" src="/X-admin-2.3/js/jquery.min.3.2.1.js"></script>
+
+    <script src="/X-admin-2.3/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/X-admin-2.3/js/xadmin.js"></script>
 
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -34,6 +31,7 @@
 <div class="container">
     <div class="logo"><a href="./index.html">X-admin v2.0</a></div>
     <div class="left_open">
+
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
     </div>
     <ul class="layui-nav left fast-add" lay-filter="">
@@ -46,6 +44,7 @@
             </dl>
         </li>
     </ul>
+    <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
             <a href="javascript:;">admin</a>

@@ -32,7 +32,7 @@
     <mvc:resources location="/images/" mapping="/images/**"/>
     <mvc:resources location="/fonts/" mapping="/fonts/**"/>
 
-    <mvc:resources location="/XAdmin/" mapping="/XAdmin/**"/>
+    <mvc:resources location="/X-admin-2.3/" mapping="/X-admin-2.3/**"/>
 
     <!-- 视图适配，支持多种视图 -->
     <bean
