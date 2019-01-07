@@ -20,6 +20,8 @@ public class TestController {
     public String testMvc(HttpServletRequest request){
         List<Department> departmentList = departmentService.listDepartment();
         request.setAttribute("deps",departmentList);
+    
+        System.out.println (123123);
         return "success";
     }
 }
